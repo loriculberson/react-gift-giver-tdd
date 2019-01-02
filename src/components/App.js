@@ -3,12 +3,11 @@ import React, { Component } from 'react';
 class App extends Component {
   state = {
     gifts: [],
-    newGift: { person: '', gift: ''}
+    newGift: { person: '', giftName: ''}
   }
 
   //update the newGift Object person
   captureName = (event) =>{
-    console.log(this.state.newGift.person)
     this.setState ({
       newGift: {
         ...this.state.newGift, 
@@ -18,18 +17,15 @@ class App extends Component {
   }
 
   captureGift = (event) =>{
-    console.log(this.state.newGift.gift)
     this.setState ({
       newGift: {
         ...this.state.newGift, 
-        gift: event.target.value
+        giftName: event.target.value
       }
     })
   }
 
-
   submitGift = (event) => {
-    console.log('hi')
     //create a newGift object,
     //add the newGift object into gifts
     //empty out the input fields
@@ -39,13 +35,18 @@ class App extends Component {
 
     newGift = {
       person: "",
-      gift: ""
+      giftName: ""
     } 
 
     this.setState({ gifts, newGift})
   }
-
+  
+  
   render() {
+    const allGifts = this.state.gifts.map( (gift, index) => {
+      return <li key={index}>{gift.person} | {gift.giftName}</li>
+    })
+
     return (
       <div>
         <h2>Gift Giver</h2>
@@ -58,10 +59,16 @@ class App extends Component {
         <input type='text' 
           data-gift
           placeholder="what's the gift?" 
-          value={this.state.newGift.gift}
+          value={this.state.newGift.giftName}
           onChange={this.captureGift}
         />
         <button data-submit onClick={this.submitGift}>Add Gift</button>
+
+        <section data-gift-list>
+          <ul>
+            {allGifts}
+          </ul>
+        </section>
       </div>
     );
   }

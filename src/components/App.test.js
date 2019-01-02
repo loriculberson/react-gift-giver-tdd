@@ -53,7 +53,7 @@ it('adds a new gift to `state` when clicking the `add gift` button', () => {
   giftInput.simulate('change', giftEvent);
   submitButton.simulate('click')
 
-  const updatedGifts = [{ person: 'Becca', gift: 'Google Pixel 3'}];
+  const updatedGifts = [{ person: 'Becca', giftName: 'Google Pixel 3'}];
 
   expect(wrapper.state().gifts).toEqual(updatedGifts);
 });
@@ -86,3 +86,31 @@ it('input fields are empty after clicking the `add gift` button', () => {
   expect(nameInput.props().value).toEqual('');
   expect(giftInput.props().value).toEqual('');
 });
+
+it('adds newly added gifts to page', () => {
+  //user adds gift
+  //clicks button
+  const nameInput = wrapper.find('[data-person]');
+  const giftInput = wrapper.find('[data-gift]');
+  const submitButton = wrapper.find('[data-submit]');
+  const giftResultsText = wrapper.find('[data-gift-list]').text();
+
+  const nameEvent = {
+    target: {
+      value: "Becca"
+    }
+  }
+  
+  const giftEvent = {
+    target: {
+      value: "Google Pixel 3"
+    }
+  }
+  
+  nameInput.simulate('change', nameEvent);
+  giftInput.simulate('change', giftEvent);
+  submitButton.simulate('click')
+  
+  //gift text should render on page
+  expect(giftResultsText).toContain("Becca | Google Pixel 3");
+})
