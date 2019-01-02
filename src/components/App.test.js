@@ -49,37 +49,11 @@ it('adds a new gift to `state` when clicking the `add gift` button', () => {
     }
   }
 
-  // const buttonEvent = {
-  //   preventDefault: () => {}
-  // }
-
   nameInput.simulate('change', nameEvent);
   giftInput.simulate('change', giftEvent);
   submitButton.simulate('click')
-  
+
   const updatedGifts = [{ person: 'Becca', gift: 'Google Pixel 3'}];
 
   expect(wrapper.state().gifts).toEqual(updatedGifts);
 });
-// it("displays additional information about the teams", () => {
-//   let teamSearchField = component.find('[data-team-search-input]')
-//   let submitButton = component.find('[data-team-search-button]')
-  
-//   const inputEvent = {
-//     target: {
-//       value: "Birmingham Bolts"
-//     }
-//   }
-//   const buttonEvent = {
-//     preventDefault: () => {}
-//   }
-//   // Given I am a user
-//   // When I type a team name into the search box
-//   teamSearchField.simulate("change", inputEvent)
-//   submitButton.simulate('click', buttonEvent)
-  
-//   let teamSearchResultsText = component.find('[data-team-results]').text()
-//   // And I submit the search box
-//   // Then I should see more information about the team presented on the page
-//   expect(teamSearchResultsText).toEqual("Birmingham Bolts - Birmingham, Alabama - Colors: Purple, Yellow, Silver")
-// })

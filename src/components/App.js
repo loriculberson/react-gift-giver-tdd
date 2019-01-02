@@ -27,6 +27,21 @@ class App extends Component {
     })
   }
 
+  submitGift = (event) => {
+    console.log('hi')
+
+    //create a brand new object, overwrites old content while adding new
+    const newGift = Object.assign({}, this.state.newGift)
+    //add the newGift object into gifts
+    //push into gifts
+    const updatedGifts = [...this.state.gifts, newGift]
+    this.setState({ gifts: updatedGifts})
+    //empty out the input fields
+    console.log('gifts', this.state.gifts)
+
+    //render gifts on the page
+
+  }
 
   render() {
     return (
@@ -44,7 +59,7 @@ class App extends Component {
           value={this.state.newGift.gift}
           onChange={this.captureGift}
         />
-        <button data-submit>Add Gift</button>
+        <button data-submit onClick={this.submitGift}>Add Gift</button>
       </div>
     );
   }
