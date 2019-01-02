@@ -57,3 +57,32 @@ it('adds a new gift to `state` when clicking the `add gift` button', () => {
 
   expect(wrapper.state().gifts).toEqual(updatedGifts);
 });
+
+it('input fields are empty after clicking the `add gift` button', () => {
+  //user adds name and gift into fields
+  //user clicks submit button
+  //input fields are empty
+  const nameInput = wrapper.find('[data-person]');
+  const giftInput = wrapper.find('[data-gift]');
+  const submitButton = wrapper.find('[data-submit]');
+
+  const nameEvent = {
+    target: {
+      value: "Becca"
+    }
+  }
+
+  const giftEvent = {
+    target: {
+      value: "Google Pixel 3"
+    }
+  }
+
+  nameInput.simulate('change', nameEvent);
+  giftInput.simulate('change', giftEvent);
+  submitButton.simulate('click')
+
+  // expect(nameInput.value).toEqual(''); yields undefined. value is a prop on input field
+  expect(nameInput.props().value).toEqual('');
+  expect(giftInput.props().value).toEqual('');
+});
