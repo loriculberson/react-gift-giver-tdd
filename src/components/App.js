@@ -64,8 +64,8 @@ class App extends Component {
         />
         <button data-submit onClick={this.submitGift}>Add Gift</button>
 
-        <section data-gift-list>
-          <ul>
+        <section>
+          <ul data-gift-list>
             {allGifts}
           </ul>
         </section>
