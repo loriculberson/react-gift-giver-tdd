@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 class App extends Component {
   state = {
     gifts: [],
-    newGift: { person: '', giftName: ''}
+    newGift: { person: '', giftName: ''},
+    errorFlag: true
   }
 
-  //update the newGift Object person
   captureName = (event) =>{
     this.setState ({
       newGift: {
@@ -25,11 +25,8 @@ class App extends Component {
     })
   }
 
+
   submitGift = (event) => {
-    //create a newGift object,
-    //add the newGift object into gifts
-    //empty out the input fields
-    //render gifts on the page
     let newGift = Object.assign({}, this.state.newGift)
     const gifts = [...this.state.gifts, newGift]
 
@@ -62,7 +59,12 @@ class App extends Component {
           value={this.state.newGift.giftName}
           onChange={this.captureGift}
         />
-        <button data-submit onClick={this.submitGift}>Add Gift</button>
+        <button 
+          data-submit 
+          onClick={this.submitGift}
+          disabled={this.state.errorFlag}>
+          Add Gift
+        </button>
 
         <section>
           <ul data-gift-list>

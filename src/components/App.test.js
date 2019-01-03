@@ -169,54 +169,65 @@ import tempPolyfills from './../tempPolyfills';
       expect(giftResultsText).toContain("Becca | Google Pixel 3");
       expect(giftResultsText).toContain("Louis | Garmin watch");
     })
+    
+    it('lists gifts in order as they are added to the list', () => {
+      const nameInput = wrapper.find('[data-person]');
+      const giftInput = wrapper.find('[data-gift]');
+      const submitButton = wrapper.find('[data-submit]');
+      
+      const nameEvent1 = {
+        target: {
+          value: "Becca"
+        }
+      }
+      
+      const giftEvent1 = {
+        target: {
+          value: "Google Pixel 3"
+        }
+      }
+      
+      nameInput.simulate('change', nameEvent1);
+      giftInput.simulate('change', giftEvent1);
+      submitButton.simulate('click')
+      
+      const nameEvent2 = {
+        target: {
+          value: "Louis"
+        }
+      }
+      
+      const giftEvent2 = {
+        target: {
+          value: "Garmin watch"
+        }
+      }
+      
+      nameInput.simulate('change', nameEvent2);
+      giftInput.simulate('change', giftEvent2);
+      submitButton.simulate('click')
+      
+      const giftResults = wrapper.find('[data-gift-list]');
+      const becca = giftResults.childAt(0);
+      const louis = giftResults.childAt(1);
+      
+      // expect(wrapper.find('ul').childAt(0).type()).to.equal('li');
+      expect(becca.text()).toEqual("Becca | Google Pixel 3");
+      expect(louis.text()).toEqual("Louis | Garmin watch");
+    })
   })
 
-  it('lists gifts in order as they are added to the list', () => {
-    const nameInput = wrapper.find('[data-person]');
-    const giftInput = wrapper.find('[data-gift]');
-    const submitButton = wrapper.find('[data-submit]');
-    
-    const nameEvent1 = {
-      target: {
-        value: "Becca"
-      }
-    }
-    
-    const giftEvent1 = {
-      target: {
-        value: "Google Pixel 3"
-      }
-    }
+  describe('invalid user input', () => {
 
-    
-    nameInput.simulate('change', nameEvent1);
-    giftInput.simulate('change', giftEvent1);
-    submitButton.simulate('click')
-    
-    const nameEvent2 = {
-      target: {
-        value: "Louis"
-      }
-    }
-    
-    const giftEvent2 = {
-      target: {
-        value: "Garmin watch"
-      }
-    }
-
-    nameInput.simulate('change', nameEvent2);
-    giftInput.simulate('change', giftEvent2);
-    submitButton.simulate('click')
-
-    const giftResults = wrapper.find('[data-gift-list]');
-    const becca = giftResults.childAt(0);
-    const louis = giftResults.childAt(1);
-
-    // expect(wrapper.find('ul').childAt(0).type()).to.equal('li');
-    expect(becca.text()).toEqual("Becca | Google Pixel 3");
-    expect(louis.text()).toEqual("Louis | Garmin watch");
+    it('disables the button on page load', () => {
+      const submitButton = wrapper.find('[data-submit]');
+  
+      submitButton.simulate('click')
+      
+      expect(submitButton.props().disabled).toBe(true);
+    })
   })
 })
-
-
+  
+  
+  
