@@ -252,7 +252,7 @@ import tempPolyfills from './../tempPolyfills';
       expect(submitButton.props().disabled).toBe(true);
     });
     
-    it('displays disabled button when input fields are empty', () => {
+    it('displays disabled button when both input fields are empty', () => {
       const nameInput = wrapper.find('[data-person]');
       const giftInput = wrapper.find('[data-gift]');
       
@@ -276,6 +276,53 @@ import tempPolyfills from './../tempPolyfills';
       expect(submitButton.props().disabled).toBe(true);
     })
 
+    it('displays disabled button when name input fields is empty', () => {
+      const nameInput = wrapper.find('[data-person]');
+      const giftInput = wrapper.find('[data-gift]');
+      
+      const nameEvent = {
+        target: {
+          value: ""
+        }
+      }
+      
+      const giftEvent = {
+        target: {
+          value: "Texans hat"
+        }
+      }
+      nameInput.simulate('change', nameEvent);
+      giftInput.simulate('change', giftEvent);
+
+      const submitButton = wrapper.find('[data-submit]');
+      submitButton.simulate('click')
+      
+      expect(submitButton.props().disabled).toBe(true);
+    })
+
+    it('displays disabled button when gift input fields is empty', () => {
+      const nameInput = wrapper.find('[data-person]');
+      const giftInput = wrapper.find('[data-gift]');
+      
+      const nameEvent = {
+        target: {
+          value: "Rochelle"
+        }
+      }
+      
+      const giftEvent = {
+        target: {
+          value: ""
+        }
+      }
+      nameInput.simulate('change', nameEvent);
+      giftInput.simulate('change', giftEvent);
+
+      const submitButton = wrapper.find('[data-submit]');
+      submitButton.simulate('click')
+      
+      expect(submitButton.props().disabled).toBe(true);
+    })
   })
 })
   
