@@ -1,6 +1,7 @@
 {
   "name": "gift-giver",
   "version": "0.1.0",
+  "homepage": "https://pages.github.homedepot.com/LXC3DEF/gift-giver-tdd",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
@@ -15,7 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -29,6 +31,7 @@
   "devDependencies": {
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
+    "gh-pages": "^2.0.1",
     "jest-cli": "^23.6.0"
   }
 }
