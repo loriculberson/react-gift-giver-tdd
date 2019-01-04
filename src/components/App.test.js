@@ -8,7 +8,7 @@ import tempPolyfills from './../tempPolyfills';
 
 // it('renders correctly', () => {
   //   expect(wrapper).toMatchSnapshot();
-  // });
+  //});
   describe('App landing page', () => {
     let wrapper;
 
@@ -215,17 +215,67 @@ import tempPolyfills from './../tempPolyfills';
       expect(becca.text()).toEqual("Becca | Google Pixel 3");
       expect(louis.text()).toEqual("Louis | Garmin watch");
     })
+
+    it('displays default colored button', () => {
+      const nameInput = wrapper.find('[data-person]');
+      const giftInput = wrapper.find('[data-gift]');
+      
+      const nameEvent = {
+        target: {
+          value: "Cristiano"
+        }
+      }
+      
+      const giftEvent = {
+        target: {
+          value: "soccer ball"
+        }
+      }
+      nameInput.simulate('change', nameEvent);
+      giftInput.simulate('change', giftEvent);
+      
+      /* Note: this test fails if the submit button is declared with the nameInput and giftInputs. 
+      The button needs to be "found" AFTER the input fields have content because its prop disabled value changes
+      */
+      const submitButton = wrapper.find('[data-submit]');
+      expect(submitButton.props().disabled).toBe(false);
+    })
   })
 
   describe('invalid user input', () => {
 
-    it('disables the button on page load', () => {
+    it('button is disabled on page load', () => {
       const submitButton = wrapper.find('[data-submit]');
   
       submitButton.simulate('click')
       
       expect(submitButton.props().disabled).toBe(true);
+    });
+    
+    it('displays disabled button when input fields are empty', () => {
+      const nameInput = wrapper.find('[data-person]');
+      const giftInput = wrapper.find('[data-gift]');
+      
+      const nameEvent = {
+        target: {
+          value: ""
+        }
+      }
+      
+      const giftEvent = {
+        target: {
+          value: ""
+        }
+      }
+      nameInput.simulate('change', nameEvent);
+      giftInput.simulate('change', giftEvent);
+
+      const submitButton = wrapper.find('[data-submit]');
+      submitButton.simulate('click')
+      
+      expect(submitButton.props().disabled).toBe(true);
     })
+
   })
 })
   

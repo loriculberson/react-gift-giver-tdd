@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
+import './App.css';
 
 class App extends Component {
   state = {
@@ -7,13 +9,25 @@ class App extends Component {
     errorFlag: true
   }
 
+  doInputFieldsHaveContent = () => {
+    console.log('state:', this.state.newGift);
+    const { person, giftName } = this.state.newGift;
+    const hasPerson = person && person.length > 0;
+    const hasGiftName = giftName && giftName.length > 0;
+    this.setState({
+      errorFlag: !hasPerson || !hasGiftName
+    });
+  }
+
   captureName = (event) =>{
+    console.log(`person`, event.target.value)
+    console.log(`person length capName`, event.target.value.length)
     this.setState ({
       newGift: {
         ...this.state.newGift, 
         person: event.target.value
       }
-    })
+    }, this.doInputFieldsHaveContent)
   }
 
   captureGift = (event) =>{
@@ -22,11 +36,11 @@ class App extends Component {
         ...this.state.newGift, 
         giftName: event.target.value
       }
-    })
+    }, this.doInputFieldsHaveContent)
   }
 
-
   submitGift = (event) => {
+    let errorFlag = true
     let newGift = Object.assign({}, this.state.newGift)
     const gifts = [...this.state.gifts, newGift]
 
@@ -35,7 +49,7 @@ class App extends Component {
       giftName: ""
     } 
 
-    this.setState({ gifts, newGift})
+    this.setState({ gifts, newGift, errorFlag})
   }
   
   
@@ -62,6 +76,7 @@ class App extends Component {
         <button 
           data-submit 
           onClick={this.submitGift}
+          // className={classNames({error: this.state.errorFlag})}
           disabled={this.state.errorFlag}>
           Add Gift
         </button>
