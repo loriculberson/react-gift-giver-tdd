@@ -5,12 +5,12 @@ import './App.css';
 class App extends Component {
   state = {
     gifts: [],
-    newGift: { person: '', giftName: ''},
+    newGift: { id: '', person: '', giftName: ''},
     errorFlag: true
   }
 
   doInputFieldsHaveContent = () => {
-    console.log('state:', this.state.newGift);
+    // console.log('state:', this.state.newGift);
     const { person, giftName } = this.state.newGift;
     const hasPerson = person && person.length > 0;
     const hasGiftName = giftName && giftName.length > 0;
@@ -20,8 +20,6 @@ class App extends Component {
   }
 
   captureName = (event) =>{
-    console.log(`person`, event.target.value)
-    console.log(`person length capName`, event.target.value.length)
     this.setState ({
       newGift: {
         ...this.state.newGift, 
@@ -39,12 +37,19 @@ class App extends Component {
     }, this.doInputFieldsHaveContent)
   }
 
+  nextId = () => {
+    return this.state.gifts.reduce(( acc, cur ) => {
+      return Math.max( acc, cur.id )
+    }, 0) + 1
+  }
+
   submitGift = (event) => {
     let errorFlag = true
-    let newGift = Object.assign({}, this.state.newGift)
+    let newGift = Object.assign({}, this.state.newGift, {id: this.nextId()})
     const gifts = [...this.state.gifts, newGift]
 
     newGift = {
+      id: "",
       person: "",
       giftName: ""
     } 
@@ -53,12 +58,12 @@ class App extends Component {
   }
   
   render() {
-    const allGifts = this.state.gifts.map( (gift, index) => {
+    const allGifts = this.state.gifts.map( gift => {
       return (
-        <li key={index}>
+        <li key={gift.id}>
           {gift.person} | {gift.giftName}
 
-          <button class="delete" id={`delete-${gift.id}`}>Delete</button>
+          <button className="delete" id={"delete-item-" + gift.id}>Delete</button>
         </li>
       )
     })

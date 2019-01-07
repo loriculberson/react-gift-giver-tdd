@@ -59,7 +59,7 @@ import tempPolyfills from './../tempPolyfills';
       giftInput.simulate('change', giftEvent);
       submitButton.simulate('click')
       
-      const updatedGifts = [{ person: 'Becca', giftName: 'Google Pixel 3'}];
+      const updatedGifts = [{ id: 1, person: 'Becca', giftName: 'Google Pixel 3'}];
       
       expect(wrapper.state().gifts).toEqual(updatedGifts);
     });
@@ -259,17 +259,37 @@ import tempPolyfills from './../tempPolyfills';
           value: "soccer ball"
         }
       }
+
       nameInput.simulate('change', nameEvent);
       giftInput.simulate('change', giftEvent);
+      
+      submitButton.simulate('click');
+      
+      const nameEvent2 = {
+        target: {
+          value: "Kylie"
+        }
+      }
+      
+      const giftEvent2 = {
+        target: {
+          value: "basketball"
+        }
+      }
+      
+      nameInput.simulate('change', nameEvent2);
+      giftInput.simulate('change', giftEvent2);
       
       submitButton.simulate('click');
 
       const giftResults = wrapper.find('[data-gift-list]');
 
-      expect(giftResults.children()).toHaveLength(1);
+      expect(giftResults.children()).toHaveLength(2);
       
-      const deleteButton = wrapper.find('#delete-1');
+      const deleteButton = wrapper.find('#delete-item-1');
+      const deleteButton2 = wrapper.find('#delete-item-2');
       expect(deleteButton.exists()).toBe(true);
+      expect(deleteButton2.exists()).toBe(true);
 
     });
 
