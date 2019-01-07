@@ -52,10 +52,15 @@ class App extends Component {
     this.setState({ gifts, newGift, errorFlag})
   }
   
-  
   render() {
     const allGifts = this.state.gifts.map( (gift, index) => {
-      return <li key={index}>{gift.person} | {gift.giftName}</li>
+      return (
+        <li key={index}>
+          {gift.person} | {gift.giftName}
+
+          <button class="delete" id={`delete-${gift.id}`}>Delete</button>
+        </li>
+      )
     })
 
     return (
@@ -76,7 +81,6 @@ class App extends Component {
         <button 
           data-submit 
           onClick={this.submitGift}
-          // className={classNames({error: this.state.errorFlag})}
           disabled={this.state.errorFlag}>
           Add Gift
         </button>

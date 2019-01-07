@@ -5,7 +5,6 @@ import setupTests from './../setupTests.js';
 import tempPolyfills from './../tempPolyfills';
 //our test needs a local copy of the App. so we will shallowly render one.
 
-
 // it('renders correctly', () => {
   //   expect(wrapper).toMatchSnapshot();
   //});
@@ -16,7 +15,7 @@ import tempPolyfills from './../tempPolyfills';
       wrapper = shallow(<App />)
     })
 
-  describe('valid user input', () => {
+  describe('when user input is valid', () => {
 
     it('initializes the `state` with an empty array of gifts', () => {
       expect(wrapper.state().gifts).toEqual([]);
@@ -117,9 +116,11 @@ import tempPolyfills from './../tempPolyfills';
       giftInput.simulate('change', giftEvent);
       submitButton.simulate('click')
       
-      const giftResultsText = wrapper.find('[data-gift-list]').text();
+      const giftResults = wrapper.find('[data-gift-list]');
       //gift text should render on page
-      expect(giftResultsText).toContain("Becca | Google Pixel 3");
+      expect(giftResults.text()).toContain("Becca | Google Pixel 3");
+      expect(giftResults.children()).toHaveLength(1);
+
       // expect(giftResultsText).toBe("Becca | Google Pixel 3");
       // expect(giftResultsText).toEqual("Becca | Google Pixel 3");
     })
@@ -143,7 +144,6 @@ import tempPolyfills from './../tempPolyfills';
         }
       }
 
-      
       nameInput.simulate('change', nameEvent1);
       giftInput.simulate('change', giftEvent1);
       submitButton.simulate('click')
@@ -164,10 +164,11 @@ import tempPolyfills from './../tempPolyfills';
       giftInput.simulate('change', giftEvent2);
       submitButton.simulate('click')
 
-      const giftResultsText = wrapper.find('[data-gift-list]').text();
+      const giftResults = wrapper.find('[data-gift-list]');
 
-      expect(giftResultsText).toContain("Becca | Google Pixel 3");
-      expect(giftResultsText).toContain("Louis | Garmin watch");
+      expect(giftResults.children()).toHaveLength(2)
+      expect(giftResults.text()).toContain("Becca | Google Pixel 3");
+      expect(giftResults.text()).toContain("Louis | Garmin watch");
     })
     
     it('lists gifts in order as they are added to the list', () => {
@@ -212,8 +213,9 @@ import tempPolyfills from './../tempPolyfills';
       const louis = giftResults.childAt(1);
       
       // expect(wrapper.find('ul').childAt(0).type()).to.equal('li');
-      expect(becca.text()).toEqual("Becca | Google Pixel 3");
-      expect(louis.text()).toEqual("Louis | Garmin watch");
+      
+      expect(becca.text()).toContain("Becca | Google Pixel 3");
+      expect(louis.text()).toContain("Louis | Garmin watch");
     })
 
     it('displays default colored button', () => {
@@ -240,9 +242,77 @@ import tempPolyfills from './../tempPolyfills';
       const submitButton = wrapper.find('[data-submit]');
       expect(submitButton.props().disabled).toBe(false);
     })
+    
+    it('displays a delete button for each list item', () => {
+      const nameInput = wrapper.find('[data-person]');
+      const giftInput = wrapper.find('[data-gift]');
+      const submitButton = wrapper.find('[data-submit]');
+
+      const nameEvent = {
+        target: {
+          value: "Cristiano"
+        }
+      }
+      
+      const giftEvent = {
+        target: {
+          value: "soccer ball"
+        }
+      }
+      nameInput.simulate('change', nameEvent);
+      giftInput.simulate('change', giftEvent);
+      
+      submitButton.simulate('click');
+
+      const giftResults = wrapper.find('[data-gift-list]');
+
+      expect(giftResults.children()).toHaveLength(1);
+      
+      const deleteButton = wrapper.find('#delete-1');
+      expect(deleteButton.exists()).toBe(true);
+
+    });
+
+    xit('deletes gift from list when clicked', () => {
+      const nameInput = wrapper.find('[data-person]');
+      const giftInput = wrapper.find('[data-gift]');
+
+      const nameEvent = {
+        target: {
+          value: "Cristiano"
+        }
+      }
+      
+      const giftEvent = {
+        target: {
+          value: "soccer ball"
+        }
+      }
+      nameInput.simulate('change', nameEvent);
+      giftInput.simulate('change', giftEvent);
+
+      const giftResults = wrapper.find('[data-gift-list]');
+      expect(giftResults.isEmpty()).toBe(true)
+      
+      submitButton.simulate('click');
+
+      const giftAddedGiftResults = wrapper.find('[data-gift-list]');
+      
+      const cristiano = giftAddedGiftResults.childAt(0);
+      expect(cristiano.text()).toEqual("Cristiano | soccer ball");
+      expect(giftAddedGiftResults.isEmpty()).toBe(false)
+      
+      const deleteButton = wrapper.find('#delete-1');
+      deleteButton.simulate('click');
+
+      //the gift results element needs to be created again since the variable value has changed
+      const giftDeletedGiftResults = wrapper.find('[data-gift-list]');
+      expect(giftDeletedGiftResults.isEmpty()).toBe(true)
+    })
+
   })
 
-  describe('invalid user input', () => {
+  describe('when user input is invalid', () => {
 
     it('button is disabled on page load', () => {
       const submitButton = wrapper.find('[data-submit]');
