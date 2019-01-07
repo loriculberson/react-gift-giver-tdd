@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classNames from 'classnames';
 import './App.css';
 
 class App extends Component {
@@ -56,6 +55,12 @@ class App extends Component {
 
     this.setState({ gifts, newGift, errorFlag})
   }
+
+  removeGift = (id) => {
+    const gifts = this.state.gifts.filter( gift => gift.id !== id );
+
+    this.setState({ gifts });
+  }
   
   render() {
     const allGifts = this.state.gifts.map( gift => {
@@ -63,7 +68,12 @@ class App extends Component {
         <li key={gift.id}>
           {gift.person} | {gift.giftName}
 
-          <button className="delete" id={"delete-item-" + gift.id}>Delete</button>
+          <button 
+            className="delete" 
+            id={"delete-item-" + gift.id}
+            onClick={() => this.removeGift(gift.id)}>
+            Delete
+          </button>
         </li>
       )
     })

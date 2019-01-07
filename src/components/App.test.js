@@ -293,7 +293,7 @@ import tempPolyfills from './../tempPolyfills';
 
     });
 
-    xit('deletes gift from list when clicked', () => {
+    it('deletes gift from list when delete button is clicked', () => {
       const nameInput = wrapper.find('[data-person]');
       const giftInput = wrapper.find('[data-gift]');
 
@@ -311,29 +311,24 @@ import tempPolyfills from './../tempPolyfills';
       nameInput.simulate('change', nameEvent);
       giftInput.simulate('change', giftEvent);
 
-      const giftResults = wrapper.find('[data-gift-list]');
-      expect(giftResults.isEmpty()).toBe(true)
-      
+      const submitButton = wrapper.find('[data-submit]');
       submitButton.simulate('click');
 
-      const giftAddedGiftResults = wrapper.find('[data-gift-list]');
+      let giftResults = wrapper.find('[data-gift-list]');
       
-      const cristiano = giftAddedGiftResults.childAt(0);
-      expect(cristiano.text()).toEqual("Cristiano | soccer ball");
-      expect(giftAddedGiftResults.isEmpty()).toBe(false)
+      expect(giftResults.children()).toHaveLength(1);
       
-      const deleteButton = wrapper.find('#delete-1');
+      const deleteButton = wrapper.find('#delete-item-1');
+
       deleteButton.simulate('click');
-
-      //the gift results element needs to be created again since the variable value has changed
-      const giftDeletedGiftResults = wrapper.find('[data-gift-list]');
-      expect(giftDeletedGiftResults.isEmpty()).toBe(true)
+      giftResults = wrapper.find('[data-gift-list]');
+      
+      expect(giftResults.children()).toHaveLength(0);
+      expect(giftResults.children().exists()).toBe(false)
     })
-
   })
 
   describe('when user input is invalid', () => {
-
     it('button is disabled on page load', () => {
       const submitButton = wrapper.find('[data-submit]');
   
