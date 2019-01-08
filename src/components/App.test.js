@@ -242,7 +242,8 @@ import tempPolyfills from './../tempPolyfills';
       const submitButton = wrapper.find('[data-submit]');
       expect(submitButton.props().disabled).toBe(false);
     })
-    
+
+   describe('delete', () => {
     it('displays a delete button for each list item', () => {
       const nameInput = wrapper.find('[data-person]');
       const giftInput = wrapper.find('[data-gift]');
@@ -326,6 +327,8 @@ import tempPolyfills from './../tempPolyfills';
       expect(giftResults.children()).toHaveLength(0);
       expect(giftResults.children().exists()).toBe(false)
     })
+   }) 
+
   })
 
   describe('when user input is invalid', () => {
