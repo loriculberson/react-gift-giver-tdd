@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import './GiftList.css';
 
-class App extends Component {
+class GiftList extends Component {
   state = {
     gifts: [],
     newGift: { id: '', person: '', giftName: ''},
@@ -110,4 +110,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default GiftList;

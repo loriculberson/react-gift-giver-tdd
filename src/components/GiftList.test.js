@@ -1,18 +1,18 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from './App';
-import setupTests from './../setupTests.js';
-import tempPolyfills from './../tempPolyfills';
+import GiftList from './GiftList';
+import setupTests from '../setupTests.js';
+import tempPolyfills from '../tempPolyfills';
 //our test needs a local copy of the App. so we will shallowly render one.
 
 // it('renders correctly', () => {
   //   expect(wrapper).toMatchSnapshot();
   //});
-  describe('App landing page', () => {
+  describe('GiftList landing page', () => {
     let wrapper;
 
     beforeEach(() => {
-      wrapper = shallow(<App />)
+      wrapper = shallow(<GiftList />)
     })
 
   describe('when user input is valid', () => {
