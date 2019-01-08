@@ -329,84 +329,87 @@ import tempPolyfills from './../tempPolyfills';
   })
 
   describe('when user input is invalid', () => {
-    it('button is disabled on page load', () => {
-      const submitButton = wrapper.find('[data-submit]');
-  
-      submitButton.simulate('click')
-      
-      expect(submitButton.props().disabled).toBe(true);
-    });
+    describe('button is disabled', () => {
+
+      it('on page load', () => {
+        const submitButton = wrapper.find('[data-submit]');
     
-    it('displays disabled button when both input fields are empty', () => {
-      const nameInput = wrapper.find('[data-person]');
-      const giftInput = wrapper.find('[data-gift]');
+        submitButton.simulate('click')
+        
+        expect(submitButton.props().disabled).toBe(true);
+      });
       
-      const nameEvent = {
-        target: {
-          value: ""
+      it('when both input fields are empty', () => {
+        const nameInput = wrapper.find('[data-person]');
+        const giftInput = wrapper.find('[data-gift]');
+        
+        const nameEvent = {
+          target: {
+            value: ""
+          }
         }
-      }
-      
-      const giftEvent = {
-        target: {
-          value: ""
+        
+        const giftEvent = {
+          target: {
+            value: ""
+          }
         }
-      }
-      nameInput.simulate('change', nameEvent);
-      giftInput.simulate('change', giftEvent);
+        nameInput.simulate('change', nameEvent);
+        giftInput.simulate('change', giftEvent);
 
-      const submitButton = wrapper.find('[data-submit]');
-      submitButton.simulate('click')
-      
-      expect(submitButton.props().disabled).toBe(true);
-    })
+        const submitButton = wrapper.find('[data-submit]');
+        submitButton.simulate('click')
+        
+        expect(submitButton.props().disabled).toBe(true);
+      })
 
-    it('displays disabled button when name input fields is empty', () => {
-      const nameInput = wrapper.find('[data-person]');
-      const giftInput = wrapper.find('[data-gift]');
-      
-      const nameEvent = {
-        target: {
-          value: ""
+      it('when name input field is empty', () => {
+        const nameInput = wrapper.find('[data-person]');
+        const giftInput = wrapper.find('[data-gift]');
+        
+        const nameEvent = {
+          target: {
+            value: ""
+          }
         }
-      }
-      
-      const giftEvent = {
-        target: {
-          value: "Texans hat"
+        
+        const giftEvent = {
+          target: {
+            value: "Texans hat"
+          }
         }
-      }
-      nameInput.simulate('change', nameEvent);
-      giftInput.simulate('change', giftEvent);
+        nameInput.simulate('change', nameEvent);
+        giftInput.simulate('change', giftEvent);
 
-      const submitButton = wrapper.find('[data-submit]');
-      submitButton.simulate('click')
-      
-      expect(submitButton.props().disabled).toBe(true);
-    })
+        const submitButton = wrapper.find('[data-submit]');
+        submitButton.simulate('click')
+        
+        expect(submitButton.props().disabled).toBe(true);
+      })
 
-    it('displays disabled button when gift input fields is empty', () => {
-      const nameInput = wrapper.find('[data-person]');
-      const giftInput = wrapper.find('[data-gift]');
-      
-      const nameEvent = {
-        target: {
-          value: "Rochelle"
+      it('when gift input field is empty', () => {
+        const nameInput = wrapper.find('[data-person]');
+        const giftInput = wrapper.find('[data-gift]');
+        
+        const nameEvent = {
+          target: {
+            value: "Rochelle"
+          }
         }
-      }
-      
-      const giftEvent = {
-        target: {
-          value: ""
+        
+        const giftEvent = {
+          target: {
+            value: ""
+          }
         }
-      }
-      nameInput.simulate('change', nameEvent);
-      giftInput.simulate('change', giftEvent);
+        nameInput.simulate('change', nameEvent);
+        giftInput.simulate('change', giftEvent);
 
-      const submitButton = wrapper.find('[data-submit]');
-      submitButton.simulate('click')
-      
-      expect(submitButton.props().disabled).toBe(true);
+        const submitButton = wrapper.find('[data-submit]');
+        submitButton.simulate('click')
+        
+        expect(submitButton.props().disabled).toBe(true);
+      })
     })
   })
 })
