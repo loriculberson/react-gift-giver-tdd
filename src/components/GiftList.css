@@ -6,3 +6,8 @@ button:disabled {
 button {
   background-color: #f96302;
 }
+
+.edit-mode {
+  background-color: darkblue;
+  color: white;
+}

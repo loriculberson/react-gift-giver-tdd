@@ -243,7 +243,7 @@ import tempPolyfills from '../tempPolyfills';
       expect(submitButton.props().disabled).toBe(false);
     })
 
-   describe('delete functionality', () => {
+   describe('delete mode', () => {
     it('displays a delete button for each list item', () => {
       const nameInput = wrapper.find('[data-person]');
       const giftInput = wrapper.find('[data-gift]');
@@ -329,7 +329,7 @@ import tempPolyfills from '../tempPolyfills';
     })
    }) 
 
-   describe('edit functionality', () => {
+   describe('editing mode', () => {
     it('populates input fields with person and giftname when list item is clicked', ()=> {
       let nameInput = wrapper.find('[data-person]');
       let giftInput = wrapper.find('[data-gift]');
@@ -363,10 +363,10 @@ import tempPolyfills from '../tempPolyfills';
       expect(giftInput.props().value).toBe("soccer ball");
     })
 
-    xit('displays the updated item on the page', ()=> {
-      const nameInput = wrapper.find('[data-person]');
-      const giftInput = wrapper.find('[data-gift]');
-      const submitButton = wrapper.find('[data-submit]');
+    it('changes the button to `Update`, is enabled and dark blue', () => {
+      let nameInput = wrapper.find('[data-person]');
+      let giftInput = wrapper.find('[data-gift]');
+      let submitButton = wrapper.find('[data-submit]');
 
       let nameEvent = {
         target: {
@@ -385,23 +385,59 @@ import tempPolyfills from '../tempPolyfills';
       
       submitButton.simulate('click');
       
-      const listElement = wrapper.find('[data-list-item-1]');
+      const listElement = wrapper.find('#list-item-1');
+
+      listElement.simulate('click');
+      submitButton = wrapper.find('[data-submit]');
+
+      expect(submitButton.props().disabled).toBe(false);
+      expect(submitButton.text()).toBe('Update');
+      expect(submitButton.props().className).toBe(`edit-mode`)
+    })
+
+    it('displays the updated item in original list position', ()=> {
+      const nameInput = wrapper.find('[data-person]');
+      const giftInput = wrapper.find('[data-gift]');
+      const submitButton = wrapper.find('[data-submit]');
+
+      const nameEvent = {
+        target: {
+          value: "Cristiano"
+        }
+      }
+      
+      const giftEvent = {
+        target: {
+          value: "soccer ball"
+        }
+      }
+
+      nameInput.simulate('change', nameEvent);
+      giftInput.simulate('change', giftEvent);
+      
+      submitButton.simulate('click');
+      
+      const listElement = wrapper.find('#list-item-1');
       listElement.simulate('click');
 
-      nameEventUpdate = {
+      const nameEventUpdate = {
         target: {
           value: "Michelle"
         }
       }
       
-      giftEventUpdate = {
+      const giftEventUpdate = {
         target: {
           value: "Bose headphones"
         }
       }
-
+      // nameInput = wrapper.find('[data-person]');
+      // giftInput = wrapper.find('[data-gift]');
       nameInput.simulate('change', nameEventUpdate);
       giftInput.simulate('change', giftEventUpdate);
+      // submitButton = wrapper.find('[data-submit]')
+
+      // console.log(wrapper.debug())
 
       submitButton.simulate('click');
 

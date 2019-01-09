@@ -5,7 +5,9 @@ class GiftList extends Component {
   state = {
     gifts: [],
     newGift: { id: '', person: '', giftName: ''},
-    errorFlag: true
+    giftBeingEdited: {},
+    errorFlag: true,
+    isEditing: false
   }
 
   doInputFieldsHaveContent = () => {
@@ -42,26 +44,40 @@ class GiftList extends Component {
     }, 0) + 1
   }
 
-  submitGift = (event) => {
-    let errorFlag = true
-    let newGift = Object.assign({}, this.state.newGift, {id: this.nextId()})
-    const gifts = [...this.state.gifts, newGift]
-
+  handleSubmitGift = (event) => {
+   let errorFlag = true
+   let newGift;
+   let gifts;
+   
+   if (this.state.isEditing) {
+     newGift = Object.assign({}, this.state.giftBeingEdited, this.state.newGift)
+     let giftIndex = this.state.gifts.findIndex( gift => gift.id === newGift.id)
+     gifts = [...this.state.gifts.slice(0, giftIndex), newGift, ...this.state.gifts.slice(giftIndex + 1)]
+    //find gift and update it.
+    // DO NOT ADD TO GIFTS array! 
+   } else {
+    // create new gift and add it to the gifts array
+    newGift = Object.assign({}, this.state.newGift, {id: this.nextId()})
+    gifts = [...this.state.gifts, newGift]
+   }
+ 
     newGift = {
       id: "",
       person: "",
       giftName: ""
     } 
+    let isEditing = false;
 
-    this.setState({ gifts, newGift, errorFlag})
+    this.setState({ gifts, newGift, errorFlag, isEditing })
   }
 
   updateGiftInputFields = (id) => {
+    const isEditing = true;
+    const errorFlag = false;
     const gift = this.state.gifts.find( gift => gift.id === id );
-    const newGift = Object.assign(gift, {person: gift.person, gift: gift.giftName})
+    const newGift = Object.assign({}, {id: gift.id, person: gift.person, giftName: gift.giftName})
 
-    this.setState({ newGift })
-
+    this.setState({ newGift, errorFlag, isEditing, giftBeingEdited: gift })
   }
 
   removeGift = (id) => {
@@ -88,6 +104,9 @@ class GiftList extends Component {
         </li>
       )
     })
+    
+    const submitButtonText = this.state.isEditing ? 'Update' : 'Add Gift';
+    const submitButtonClass = this.state.isEditing ? 'edit-mode' : null;
 
     return (
       <div>
@@ -106,9 +125,10 @@ class GiftList extends Component {
         />
         <button 
           data-submit 
-          onClick={this.submitGift}
-          disabled={this.state.errorFlag}>
-          Add Gift
+          onClick={this.handleSubmitGift}
+          disabled={this.state.errorFlag}
+          className={submitButtonClass}>
+          {submitButtonText}
         </button>
 
         <section>
