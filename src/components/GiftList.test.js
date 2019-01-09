@@ -243,7 +243,7 @@ import tempPolyfills from '../tempPolyfills';
       expect(submitButton.props().disabled).toBe(false);
     })
 
-   describe('delete', () => {
+   describe('delete functionality', () => {
     it('displays a delete button for each list item', () => {
       const nameInput = wrapper.find('[data-person]');
       const giftInput = wrapper.find('[data-gift]');
@@ -329,6 +329,91 @@ import tempPolyfills from '../tempPolyfills';
     })
    }) 
 
+   describe('edit functionality', () => {
+    it('populates input fields with person and giftname when list item is clicked', ()=> {
+      let nameInput = wrapper.find('[data-person]');
+      let giftInput = wrapper.find('[data-gift]');
+      const submitButton = wrapper.find('[data-submit]');
+
+      let nameEvent = {
+        target: {
+          value: "Cristiano"
+        }
+      }
+      
+      let giftEvent = {
+        target: {
+          value: "soccer ball"
+        }
+      }
+
+      nameInput.simulate('change', nameEvent);
+      giftInput.simulate('change', giftEvent);
+      
+      submitButton.simulate('click');
+      
+      const listElement = wrapper.find('#list-item-1');
+
+      listElement.simulate('click');
+      
+      nameInput = wrapper.find('[data-person]');
+      giftInput = wrapper.find('[data-gift]');
+
+      expect(nameInput.props().value).toBe("Cristiano");
+      expect(giftInput.props().value).toBe("soccer ball");
+    })
+
+    xit('displays the updated item on the page', ()=> {
+      const nameInput = wrapper.find('[data-person]');
+      const giftInput = wrapper.find('[data-gift]');
+      const submitButton = wrapper.find('[data-submit]');
+
+      let nameEvent = {
+        target: {
+          value: "Cristiano"
+        }
+      }
+      
+      let giftEvent = {
+        target: {
+          value: "soccer ball"
+        }
+      }
+
+      nameInput.simulate('change', nameEvent);
+      giftInput.simulate('change', giftEvent);
+      
+      submitButton.simulate('click');
+      
+      const listElement = wrapper.find('[data-list-item-1]');
+      listElement.simulate('click');
+
+      nameEventUpdate = {
+        target: {
+          value: "Michelle"
+        }
+      }
+      
+      giftEventUpdate = {
+        target: {
+          value: "Bose headphones"
+        }
+      }
+
+      nameInput.simulate('change', nameEventUpdate);
+      giftInput.simulate('change', giftEventUpdate);
+
+      submitButton.simulate('click');
+
+      const giftResults = wrapper.find('[data-gift-list]');
+
+      const michelle = giftResults.childAt(0);
+      
+      expect(michelle.text()).toContain("Michelle | Bose headphones");
+
+     
+    })
+   })
   })
 
   describe('when user input is invalid', () => {

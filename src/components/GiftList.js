@@ -56,6 +56,14 @@ class GiftList extends Component {
     this.setState({ gifts, newGift, errorFlag})
   }
 
+  updateGiftInputFields = (id) => {
+    const gift = this.state.gifts.find( gift => gift.id === id );
+    const newGift = Object.assign(gift, {person: gift.person, gift: gift.giftName})
+
+    this.setState({ newGift })
+
+  }
+
   removeGift = (id) => {
     const gifts = this.state.gifts.filter( gift => gift.id !== id );
 
@@ -65,7 +73,10 @@ class GiftList extends Component {
   render() {
     const allGifts = this.state.gifts.map( gift => {
       return (
-        <li key={gift.id}>
+        <li key={gift.id} 
+            id={"list-item-" + gift.id}
+            onClick={() => this.updateGiftInputFields(gift.id)}
+        >
           {gift.person} | {gift.giftName}
 
           <button 
