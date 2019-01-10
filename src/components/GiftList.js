@@ -89,19 +89,23 @@ class GiftList extends Component {
   render() {
     const allGifts = this.state.gifts.map( gift => {
       return (
-        <li key={gift.id} 
-            id={"list-item-" + gift.id}
-            onClick={() => this.updateGiftInputFields(gift.id)}
-        >
-          {gift.person} | {gift.giftName}
-
-          <button 
-            className="delete" 
-            id={"delete-item-" + gift.id}
-            onClick={() => this.removeGift(gift.id)}>
-            Delete
-          </button>
-        </li>
+          <div key={gift.id} 
+              >
+            <li>
+              <div 
+                id={"list-item-" + gift.id}
+                className="gift-data"
+                onClick={() => this.updateGiftInputFields(gift.id)}>
+                {gift.person} | {gift.giftName} 
+              </div>
+              <button 
+                className="delete" 
+                id={"delete-item-" + gift.id}
+                onClick={() => this.removeGift(gift.id)}>
+                Delete
+              </button>
+            </li>
+          </div>
       )
     })
     

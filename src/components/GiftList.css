@@ -11,3 +11,12 @@ button {
   background-color: darkblue;
   color: white;
 }
+
+.delete {
+  background-color: red;
+  color: white;
+}
+
+.gift-data {
+  display: inline-block;
+}
