@@ -93,14 +93,14 @@ class GiftList extends Component {
               >
             <li>
               <div 
-                id={"list-item-" + gift.id}
+                data-list-item={gift.id}
                 className="gift-data"
                 onClick={() => this.updateGiftInputFields(gift.id)}>
                 {gift.person} | {gift.giftName} 
               </div>
               <button 
+                data-delete-item={gift.id}
                 className="delete" 
-                id={"delete-item-" + gift.id}
                 onClick={() => this.removeGift(gift.id)}>
                 Delete
               </button>
