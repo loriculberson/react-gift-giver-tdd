@@ -8,19 +8,14 @@ import GiftList from './GiftList';
 // it('renders correctly', () => {
   //   expect(wrapper).toMatchSnapshot();
   //});
-  describe('GiftList landing page', () => {
+  describe('GiftList', () => {
     let wrapper;
 
     beforeEach(() => {
       wrapper = shallow(<GiftList />)
     })
 
-    describe('when user input is valid', () => {
-
-      it('initializes the `state` with an empty array of gifts', () => {
-        expect(wrapper.state().gifts).toEqual([]);
-      });
-      
+    describe('on page load', () => {
       it('displays input fields for person and gift', () => {
         const nameInput = wrapper.find('[data-person]');
         const giftInput = wrapper.find('[data-gift]');
@@ -29,71 +24,16 @@ import GiftList from './GiftList';
         expect(giftInput.exists()).toEqual(true)
       });
       
-      it('displays the submit button', () => {
+      it('displays disabled submit button', () => {
         const submitButton = wrapper.find('[data-submit]');
         
         expect(submitButton.exists()).toEqual(true)
+        expect(submitButton.props().disabled).toBe(true);
+
       })
-      
-      xit('adds a new gift to `state` when clicking the `add gift` button', () => {
-        //Avoid mixing enzyme interactions (simulate, click) with 
-        //user adds name and gift into fields
-        //user clicks submit button
-        //person and gift populate a list
-        const nameInput = wrapper.find('[data-person]');
-        const giftInput = wrapper.find('[data-gift]');
-        const submitButton = wrapper.find('[data-submit]');
-        
-        const nameEvent = {
-          target: {
-            value: "Becca"
-          }
-        }
-        
-        const giftEvent = {
-          target: {
-            value: "Google Pixel 3"
-          }
-        }
-        
-        nameInput.simulate('change', nameEvent);
-        giftInput.simulate('change', giftEvent);
-        submitButton.simulate('click')
-        
-        const updatedGifts = [{ id: 1, person: 'Becca', giftName: 'Google Pixel 3'}];
-        
-        expect(wrapper.state().gifts).toEqual(updatedGifts);
-      });
-      
-      it('input fields are empty after clicking the `add gift` button', () => {
-        //user adds name and gift into fields
-        //user clicks submit button
-        //input fields are empty
-        const nameInput = wrapper.find('[data-person]');
-        const giftInput = wrapper.find('[data-gift]');
-        const submitButton = wrapper.find('[data-submit]');
-        
-        const nameEvent = {
-          target: {
-            value: "Becca"
-          }
-        }
-        
-        const giftEvent = {
-          target: {
-            value: "Google Pixel 3"
-          }
-        }
-        
-        nameInput.simulate('change', nameEvent);
-        giftInput.simulate('change', giftEvent);
-        submitButton.simulate('click')
-        
-        // expect(nameInput.value).toEqual(''); yields undefined. value is a prop on input field
-        expect(nameInput.props().value).toEqual('');
-        expect(giftInput.props().value).toEqual('');
-      });
-      
+    });
+
+    describe('when user input is valid', () => {
       it('adds newly created gift record to page', () => {
         //user adds gift
         //clicks button
@@ -216,30 +156,35 @@ import GiftList from './GiftList';
         expect(louis.text()).toContain("Louis | Garmin watch");
       })
 
-      it('displays default colored button', () => {
+      it('input fields are empty after clicking the `add gift` button', () => {
+        //user adds name and gift into fields
+        //user clicks submit button
+        //input fields are empty
         const nameInput = wrapper.find('[data-person]');
         const giftInput = wrapper.find('[data-gift]');
+        const submitButton = wrapper.find('[data-submit]');
         
         const nameEvent = {
           target: {
-            value: "Cristiano"
+            value: "Becca"
           }
         }
         
         const giftEvent = {
           target: {
-            value: "soccer ball"
+            value: "Google Pixel 3"
           }
         }
+        
         nameInput.simulate('change', nameEvent);
         giftInput.simulate('change', giftEvent);
+        submitButton.simulate('click')
         
-        /* Note: this test fails if the submit button is declared with the nameInput and giftInputs. 
-        The button needs to be "found" AFTER the input fields have content because its prop disabled value changes
-        */
-        const submitButton = wrapper.find('[data-submit]');
-        expect(submitButton.props().disabled).toBe(false);
-      })
+        // expect(nameInput.value).toEqual(''); yields undefined. value is a prop on input field
+        expect(nameInput.props().value).toEqual('');
+        expect(giftInput.props().value).toEqual('');
+      });
+
 
     describe('delete mode', () => {
       it('displays a delete button for each list item', () => {
