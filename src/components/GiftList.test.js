@@ -1,14 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import GiftList from './GiftList';
-// import setupTests from '../setupTests.js';
-// import tempPolyfills from '../tempPolyfills';
-//our test needs a local copy of the App. so we will shallowly render one.
 
 // it('renders correctly', () => {
   //   expect(wrapper).toMatchSnapshot();
   //});
   describe('GiftList', () => {
+    //our test needs a local copy of the GiftList, so we will shallowly render one.
     let wrapper;
 
     beforeEach(() => {
@@ -186,7 +184,7 @@ import GiftList from './GiftList';
       });
 
 
-    describe('delete mode', () => {
+    describe('can delete', () => {
       it('displays a delete button for each list item', () => {
         const nameInput = wrapper.find('[data-person]');
         const giftInput = wrapper.find('[data-gift]');
@@ -274,7 +272,7 @@ import GiftList from './GiftList';
       })
     }) 
 
-    describe('editing mode', () => {
+    describe('can edit', () => {
       it('populates input fields with person and giftname when list item is clicked', ()=> {
         let nameInput = wrapper.find('[data-person]');
         let giftInput = wrapper.find('[data-gift]');
