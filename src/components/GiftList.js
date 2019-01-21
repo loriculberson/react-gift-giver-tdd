@@ -89,8 +89,7 @@ class GiftList extends Component {
   render() {
     const allGifts = this.state.gifts.map( gift => {
       return (
-          <div key={gift.id} 
-              >
+          <div key={gift.id}>
             <li>
               <div 
                 data-list-item={gift.id}
@@ -113,7 +112,7 @@ class GiftList extends Component {
     const submitButtonClass = this.state.isEditing ? 'edit-mode' : null;
 
     return (
-      <div>
+      <div className='container'>
         <h2>Gift Giver</h2>
         <input type='text' 
           data-person

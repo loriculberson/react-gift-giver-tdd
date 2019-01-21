@@ -154,7 +154,7 @@ import GiftList from './GiftList';
         expect(louis.text()).toContain("Louis | Garmin watch");
       })
 
-      it('input fields are empty after clicking the `add gift` button', () => {
+      it('input fields are empty after clicking `add gift` button', () => {
         //user adds name and gift into fields
         //user clicks submit button
         //input fields are empty
