@@ -9,7 +9,7 @@ App used to track gift ideas for friends and family
 - `yarn`
 
 **To run tests:**
-`yarn test`
+- `yarn test`
 
 **Skills:**
  - Test Driven development with Jest and Enzyme
