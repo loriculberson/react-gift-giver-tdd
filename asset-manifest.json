@@ -1,13 +1,13 @@
 {
-  "main.css": "/gift-giver-tdd/static/css/main.49ed5172.chunk.css",
-  "main.js": "/gift-giver-tdd/static/js/main.58bf16b1.chunk.js",
-  "main.js.map": "/gift-giver-tdd/static/js/main.58bf16b1.chunk.js.map",
-  "runtime~main.js": "/gift-giver-tdd/static/js/runtime~main.d95cc086.js",
-  "runtime~main.js.map": "/gift-giver-tdd/static/js/runtime~main.d95cc086.js.map",
-  "static/js/2.47108b32.chunk.js": "/gift-giver-tdd/static/js/2.47108b32.chunk.js",
-  "static/js/2.47108b32.chunk.js.map": "/gift-giver-tdd/static/js/2.47108b32.chunk.js.map",
-  "index.html": "/gift-giver-tdd/index.html",
-  "precache-manifest.62edafc9a06b8c4826a3d5f8d0ee657f.js": "/gift-giver-tdd/precache-manifest.62edafc9a06b8c4826a3d5f8d0ee657f.js",
-  "service-worker.js": "/gift-giver-tdd/service-worker.js",
-  "static/css/main.49ed5172.chunk.css.map": "/gift-giver-tdd/static/css/main.49ed5172.chunk.css.map"
+  "main.css": "/react-gift-giver-tdd/static/css/main.49ed5172.chunk.css",
+  "main.js": "/react-gift-giver-tdd/static/js/main.58bf16b1.chunk.js",
+  "main.js.map": "/react-gift-giver-tdd/static/js/main.58bf16b1.chunk.js.map",
+  "runtime~main.js": "/react-gift-giver-tdd/static/js/runtime~main.11e81272.js",
+  "runtime~main.js.map": "/react-gift-giver-tdd/static/js/runtime~main.11e81272.js.map",
+  "static/js/2.47108b32.chunk.js": "/react-gift-giver-tdd/static/js/2.47108b32.chunk.js",
+  "static/js/2.47108b32.chunk.js.map": "/react-gift-giver-tdd/static/js/2.47108b32.chunk.js.map",
+  "index.html": "/react-gift-giver-tdd/index.html",
+  "precache-manifest.4eaa2bebfb8a43067d85989221f53a51.js": "/react-gift-giver-tdd/precache-manifest.4eaa2bebfb8a43067d85989221f53a51.js",
+  "service-worker.js": "/react-gift-giver-tdd/service-worker.js",
+  "static/css/main.49ed5172.chunk.css.map": "/react-gift-giver-tdd/static/css/main.49ed5172.chunk.css.map"
 }

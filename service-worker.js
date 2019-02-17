@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/gift-giver-tdd/precache-manifest.62edafc9a06b8c4826a3d5f8d0ee657f.js"
+  "/react-gift-giver-tdd/precache-manifest.4eaa2bebfb8a43067d85989221f53a51.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/gift-giver-tdd/index.html", {
+workbox.routing.registerNavigationRoute("/react-gift-giver-tdd/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
