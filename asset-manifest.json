@@ -1,13 +1,13 @@
 {
-  "main.css": "/loriculberson/gift-giver-tdd/static/css/main.49ed5172.chunk.css",
-  "main.js": "/loriculberson/gift-giver-tdd/static/js/main.58bf16b1.chunk.js",
-  "main.js.map": "/loriculberson/gift-giver-tdd/static/js/main.58bf16b1.chunk.js.map",
-  "runtime~main.js": "/loriculberson/gift-giver-tdd/static/js/runtime~main.8ce353e3.js",
-  "runtime~main.js.map": "/loriculberson/gift-giver-tdd/static/js/runtime~main.8ce353e3.js.map",
-  "static/js/2.47108b32.chunk.js": "/loriculberson/gift-giver-tdd/static/js/2.47108b32.chunk.js",
-  "static/js/2.47108b32.chunk.js.map": "/loriculberson/gift-giver-tdd/static/js/2.47108b32.chunk.js.map",
-  "index.html": "/loriculberson/gift-giver-tdd/index.html",
-  "precache-manifest.5ffc32b43bf46aa23d5e96c7a2e5a446.js": "/loriculberson/gift-giver-tdd/precache-manifest.5ffc32b43bf46aa23d5e96c7a2e5a446.js",
-  "service-worker.js": "/loriculberson/gift-giver-tdd/service-worker.js",
-  "static/css/main.49ed5172.chunk.css.map": "/loriculberson/gift-giver-tdd/static/css/main.49ed5172.chunk.css.map"
+  "main.css": "/gift-giver-tdd/static/css/main.49ed5172.chunk.css",
+  "main.js": "/gift-giver-tdd/static/js/main.58bf16b1.chunk.js",
+  "main.js.map": "/gift-giver-tdd/static/js/main.58bf16b1.chunk.js.map",
+  "runtime~main.js": "/gift-giver-tdd/static/js/runtime~main.d95cc086.js",
+  "runtime~main.js.map": "/gift-giver-tdd/static/js/runtime~main.d95cc086.js.map",
+  "static/js/2.47108b32.chunk.js": "/gift-giver-tdd/static/js/2.47108b32.chunk.js",
+  "static/js/2.47108b32.chunk.js.map": "/gift-giver-tdd/static/js/2.47108b32.chunk.js.map",
+  "index.html": "/gift-giver-tdd/index.html",
+  "precache-manifest.62edafc9a06b8c4826a3d5f8d0ee657f.js": "/gift-giver-tdd/precache-manifest.62edafc9a06b8c4826a3d5f8d0ee657f.js",
+  "service-worker.js": "/gift-giver-tdd/service-worker.js",
+  "static/css/main.49ed5172.chunk.css.map": "/gift-giver-tdd/static/css/main.49ed5172.chunk.css.map"
 }

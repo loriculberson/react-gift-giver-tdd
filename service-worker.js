@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/loriculberson/gift-giver-tdd/precache-manifest.5ffc32b43bf46aa23d5e96c7a2e5a446.js"
+  "/gift-giver-tdd/precache-manifest.62edafc9a06b8c4826a3d5f8d0ee657f.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/loriculberson/gift-giver-tdd/index.html", {
+workbox.routing.registerNavigationRoute("/gift-giver-tdd/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
