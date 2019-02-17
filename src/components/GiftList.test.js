@@ -2,9 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import GiftList from './GiftList';
 
-// it('renders correctly', () => {
+// it('renders correctly yay', () => {
   //   expect(wrapper).toMatchSnapshot();
   //});
+
   describe('GiftList', () => {
     //our test needs a local copy of the GiftList, so we will shallowly render one.
     let wrapper;
