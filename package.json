@@ -1,7 +1,7 @@
 {
   "name": "gift-giver",
   "version": "0.1.0",
-  "homepage": "http://loriculberson.github.io/gift-giver-tdd",
+  "homepage": "https://loriculberson.github.io/gift-giver-tdd",
   "private": true,
   "dependencies": {
     "global": "^4.3.2",
