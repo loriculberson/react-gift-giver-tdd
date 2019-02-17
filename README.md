@@ -2,7 +2,7 @@
 
 App used to track gift ideas for friends and family
 
- [Demo app](https://pages.github.com/loriculberson/gift-giver-tdd/)
+ [Demo app](https://loriculberson.github.io/gift-giver-tdd/)
 
 **To run app:**
 - clone -> cd into directory -> `yarn`
